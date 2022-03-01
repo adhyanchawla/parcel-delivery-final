@@ -1,0 +1,51 @@
+<div class="sidebar" [ngClass]="{ hidden: !navbarStatus }">
+  <div class="logo">
+    <img src="../assets/img/download.png" alt="Company Logo" />
+    <div class="topright">
+      <a (click)="closeNavbar()"
+        ><i class="bx bxs-x-circle" style="color: #aaaaaa"></i
+      ></a>
+    </div>
+  </div>
+  <ul>
+    <li *ngIf="isLoggedIn()">
+      <a
+        [routerLink]="['']"
+        [routerLinkActive]="['activeLink']"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><i class="bx bxs-home" style="color: #ffffff"></i>Home</a
+      >
+    </li>
+    <li *ngIf="isLoggedIn()">
+      <a [routerLink]="['/orders']" [routerLinkActive]="['activeLink']"
+        ><i class="bx bx-package" style="color: #ffffff"></i>Orders</a
+      >
+    </li>
+    <li *ngIf="!isLoggedIn()">
+      <a [routerLink]="['/login']" [routerLinkActive]="['activeLink']"
+        ><i class="bx bx-log-in" style="color: #ffffff"></i>Login</a
+      >
+    </li>
+    <li>
+      <a [routerLink]="['/about']" [routerLinkActive]="['activeLink']"
+        ><i class="bx bxs-user" style="color: #ffffff"></i>About</a
+      >
+    </li>
+    <li *ngIf="isLoggedIn()">
+      <a [routerLink]="['/login']" (click)="onLogout()"
+        ><i class="bx bx-log-out" style="color: #ffffff"></i>Logout</a
+      >
+    </li>
+  </ul>
+</div>
+
+<div class="main" [ngStyle]="{ 'margin-left': navbarStatus ? '240px' : '0px' }">
+  <div class="topbar">
+    <button id="showSidebar" class="showSidebar" (click)="openNavbar()">
+      <i class="bx bx-menu"></i>
+    </button>
+  </div>
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

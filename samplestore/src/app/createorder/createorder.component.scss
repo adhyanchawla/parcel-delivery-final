@@ -1,0 +1,43 @@
+.container {
+  padding: 10px;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+
+.heading-flex {
+  display: flex;
+}
+
+.heading-flex h2 {
+  margin: 0;
+}
+
+.closeForm {
+  margin-left: auto;
+}
+
+.sub-div {
+  margin: 10px;
+  border: 2px solid blue;
+  padding: 10px;
+}
+
+.reviewOrderBtn {
+  margin-left: 10px;
+}
+
+.checkout-container {
+  margin-left: 10px;
+}
+
+.coupon {
+  margin-top: 20px;
+}
+
+.checkout-btn {
+  margin-top: 40px;
+}
+
+.btn-success {
+  font-size: 20px !important;
+}

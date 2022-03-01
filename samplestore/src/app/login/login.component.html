@@ -1,0 +1,170 @@
+<br />
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<div class="error" *ngIf="error">
+  <p>
+    {{ error }}
+  </p>
+</div>
+<div *ngIf="!isLoading">
+  <!-- Login Form -->
+  <div *ngIf="!showRegistrationForm" class="container">
+    <h2>User Login</h2>
+    <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="userInputEmail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="userEmail"
+          placeholder="Enter email"
+          ngModel
+          name="userEmail"
+          required
+          email
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="userPassword">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="userPassword"
+          placeholder="Password"
+          name="userPassword"
+          ngModel
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid"
+      >
+        Login
+      </button>
+      <p>
+        Don't have a account?
+        <a (click)="toggleRegistrationForm()">Register Here</a>
+      </p>
+    </form>
+  </div>
+
+  <!-- Registration Form -->
+  <div *ngIf="showRegistrationForm" class="container">
+    <p>Back to Login? <a (click)="toggleRegistrationForm()">Click Here</a></p>
+    <h2>New User Registration</h2>
+    <form (ngSubmit)="onRegister(registrationForm)" #registrationForm="ngForm">
+      <div class="form-group mb-3">
+        <label for="newUserEmail">Email address</label>
+        <input
+          type="email"
+          class="form-control"
+          id="newUserEmail"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          name="newUserEmail"
+          ngModel
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll send an OTP to the above email for verification.</small
+        >
+      </div>
+      <div class="from-group row mb-3">
+        <div class="col">
+          <label for="InputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="InputPassword1"
+            name="newUserPassword"
+            ngModel
+          />
+        </div>
+        <div class="col">
+          <label for="InputPassword1" class="form-label"
+            >Confirm Password</label
+          >
+          <input type="password" class="form-control" id="InputPassword2" />
+        </div>
+      </div>
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="formCheck1" />
+        <label class="form-check-label" for="formCheck1"
+          >I agree to Terms and Conditions and Privacy Policy</label
+        >
+      </div>
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+  </div>
+</div>
+
+<!-- <div *ngIf="showRegistrationFormPart2" class="container">
+  <p>Back to Login? <a (click)="toggleRegistrationForm()">Click Here</a></p>
+  <h2>New User Registration</h2>
+  <h4>Step {{ step }} of 2.</h4>
+  <form (ngSubmit)="onEmailVerify(registerEmailForm)" #registerEmailForm="ngForm">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="InputFirstName" class="form-label">First Name</label>
+        <input type="email" class="form-control" id="InputFirstName">
+      </div>
+      <div class="col">
+        <label for="InputLastName" class="form-label">Last Name</label>
+        <input type="email" class="form-control" id="InputLastName">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-8">
+        <label for="exampleInputEmail1" class="form-label mb-1">Email Address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your Email with anyone else.</div>
+      </div>
+      <div class="col-4">
+        <label for="InputOTP" class="form-label mb-1">OTP</label>
+        <input type="tel" pattern="[0-9]{4}" class="form-control" id="InputOTP">
+      </div>
+    </div>
+    <div class="row mb-3">  
+      <div class="col">
+        <label for="InputCity" class="form-label">City</label>
+        <input type="text" class="form-control" id="InputCity">
+      </div>
+      <div class="col">
+          <label for="InputState" class="form-label">State</label>
+          <input type="text" class="form-control" id="InputState">
+      </div>
+    </div>
+    <div class="row mb-3">  
+      <div class="col">
+        <label for="InputCountry" class="form-label">Country</label>
+        <input type="text" class="form-control" id="InputCountry">
+      </div>
+      <div class="col">
+          <label for="InputZipCode" class="form-label">Zip Code</label>
+          <input type="tel" pattern="[0-9]{6}" class="form-control" id="InputZipCode">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="InputNumber" class="form-label">Mobile Number</label>
+      <input type="tel" pattern="[0-9]{10}" class="form-control" id="InputNumber" aria-describedby="PhoneHelp">
+      <div id="PhoneHelp" class="form-text">We'll never share your Mobile Number with anyone else.</div>
+    </div>
+    <div class="row mb-3">  
+      <div class="col">
+        <label for="InputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="InputPassword1">
+      </div>
+      <div class="col">
+          <label for="InputPassword1" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" id="InputPassword2">
+      </div>
+    </div>
+    <div class="form-check mb-2">
+      <input type="checkbox" class="form-check-input" id="formCheck1">
+      <label class="form-check-label" for="formCheck1">I agree to Terms and Conditions and Privacy Policy</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div> -->

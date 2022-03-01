@@ -1,0 +1,263 @@
+<br />
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<div class="container" *ngIf="!isLoading">
+  <div class="heading-flex">
+    <div *ngIf="stepNo === 1 ? true : false">
+      <h2>Create New Order</h2>
+    </div>
+    <div *ngIf="stepNo === 2 ? true : false">
+      <h2>Checkout</h2>
+    </div>
+    <div class="closeForm">
+      <button class="btn btn-danger" (click)="onClose()">Close Form</button>
+    </div>
+  </div>
+  <hr />
+  <div *ngIf="stepNo === 1 ? true : false">
+    <form (ngSubmit)="onReviewAndPay(orderForm)" #orderForm="ngForm">
+      <div class="sub-div">
+        <h4>General Details</h4>
+        <hr />
+        <div class="mb-3">
+          <label for="type" class="form-label">Parcel Type:</label>
+          <select id="type" class="form-select" ngModel name="type" required>
+            <option value="Letter">Letter</option>
+            <option value="Box">Box</option>
+            <option value="Tube">Tube</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="weight" class="form-label"
+            >Weight of Parcel in Grams</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="weight"
+            ngModel
+            name="weight"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="altPhoneNumber" class="form-label"
+            >Alternate Mobile Number</label
+          >
+          <input
+            type="tel"
+            class="form-control"
+            id="altPhoneNumber"
+            ngModel
+            name="altPhoneNumber"
+            required
+          />
+        </div>
+      </div>
+      <div class="sub-div">
+        <h4>Parcel Dimensions</h4>
+        <hr />
+        <div class="row">
+          <div class="col-4">
+            <label for="length" class="form-label"
+              >Length of Parcel in cm</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="length"
+              ngModel
+              name="length"
+              required
+            />
+          </div>
+          <div class="col-4">
+            <label for="width" class="form-label">Width of Parcel in cm</label>
+            <input
+              type="number"
+              class="form-control"
+              id="width"
+              ngModel
+              name="width"
+              required
+            />
+          </div>
+          <div class="col-4">
+            <label for="height" class="form-label"
+              >Height of Parcel in cm</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="height"
+              ngModel
+              name="height"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="sub-div">
+        <h4>Pick Up Address</h4>
+        <hr />
+        <div class="mb-3">
+          <label for="pickUpAddr" class="form-label">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="pickUpAddr"
+            ngModel
+            name="pickUpAddr"
+            required
+          />
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="pickUpCity" class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="pickUpCity"
+              ngModel
+              name="pickUpCity"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="pickUpState" class="form-label">State</label>
+            <input
+              type="text"
+              class="form-control"
+              id="pickUpState"
+              ngModel
+              name="pickUpState"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="pickUpCountry" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="pickUpCountry"
+              ngModel
+              name="pickUpCountry"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="pickUpZipCode" class="form-label">Zip Code</label>
+            <input
+              type="tel"
+              pattern="[0-9]{6}"
+              class="form-control"
+              id="pickUpZipCode"
+              ngModel
+              name="pickUpZipCode"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="sub-div">
+        <h4>Drop Off Address</h4>
+        <hr />
+        <div class="mb-3">
+          <label for="dropOffAddr" class="form-label">Address</label>
+          <input
+            type="text"
+            class="form-control"
+            id="dropOffAddr"
+            ngModel
+            name="dropOffAddr"
+            required
+          />
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="dropOffCity" class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dropOffCity"
+              ngModel
+              name="dropOffCity"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="dropOffState" class="form-label">State</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dropOffState"
+              ngModel
+              name="dropOffState"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="dropOffCountry" class="form-label">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dropOffCountry"
+              ngModel
+              name="dropOffCountry"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="dropOffZipCode" class="form-label">Zip Code</label>
+            <input
+              type="tel"
+              pattern="[0-9]{6}"
+              class="form-control"
+              id="dropOffZipCode"
+              ngModel
+              name="dropOffZipCode"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary reviewOrderBtn"
+        [disabled]="!orderForm.valid"
+      >
+        Review and Pay
+      </button>
+    </form>
+  </div>
+  <div class="checkout-container" *ngIf="stepNo === 2 ? true : false">
+    <h5>Estimate Price: {{ estimateAmount }}</h5>
+    <div class="coupon">
+      <label for="couponCode" class="form-label">Coupon Code</label>
+      <input
+        type="text"
+        class="form-control"
+        id="CouponCode"
+        ngModel
+        name="CouponCode"
+        #couponCode
+      />
+      <button
+        class="btn btn-primary mt-2"
+        (click)="reEstimatePrice(couponCode.value)"
+      >
+        Apply
+      </button>
+    </div>
+    <div class="checkout-btn">
+      <button class="btn btn-success" (click)="onCreateOrder()">
+        Checkout
+      </button>
+    </div>
+  </div>
+</div>

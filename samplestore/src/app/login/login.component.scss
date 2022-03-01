@@ -1,0 +1,31 @@
+h2 {
+    text-align: center;
+}
+
+h4 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+a {
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
+a:hover {
+    cursor: pointer;
+    color: darkblue !important;
+}
+
+.error {
+    text-align: center;
+    background-color: rgb(255, 0, 0, 0.2);
+    padding: 10px;
+}
+
+.error p{
+    margin: 0;
+}

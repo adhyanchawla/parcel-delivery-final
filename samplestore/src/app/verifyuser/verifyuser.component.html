@@ -1,0 +1,27 @@
+<br />
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<div class="container" *ngIf="!isLoading">
+  <p>
+    An OTP has been sent to the registered Email Address.
+    <span>Note: You will need to re-login for your status to update.</span>
+  </p>
+  <form (ngSubmit)="onVerify(OTPForm)" #OTPForm="ngForm">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">OTP</label>
+      <input
+        type="text"
+        class="form-control"
+        id="OTP"
+        ngModel
+        name="OTP"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary me-4">Proceed</button>
+    <button class="btn btn-warning" (click)="onClose()">
+      Close Verification Form
+    </button>
+  </form>
+</div>

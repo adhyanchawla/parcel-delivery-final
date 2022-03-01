@@ -1,0 +1,59 @@
+<br />
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!isLoading">
+  <!-- Create Order Component -->
+  <div class="container" *ngIf="showOrderCreateForm">
+    <app-createorder (onCloseForm)="closeCreateOrderForm()"></app-createorder>
+  </div>
+  <div class="container" *ngIf="!showOrderCreateForm">
+    <div class="heading-flex">
+      <div>
+        <h2>My Orders</h2>
+      </div>
+      <div class="createOrderButton">
+        <button class="btn btn-success" (click)="openCreateOrderForm()">
+          Create a New Order
+        </button>
+      </div>
+    </div>
+    <hr />
+    <div class="order-card" *ngFor="let order of myOrders">
+      <div class="order-card-heading">
+        <div class="order-card-heading-left">
+          <p>
+            Order Placed:<br />
+            {{ formatDate(order.createdAt) }}
+          </p>
+        </div>
+        <div class="order-card-heading-right">
+          <p>Order Id: {{ order.id }}</p>
+        </div>
+      </div>
+      <div class="order-card-quick-details">
+        <div class="pick-up-address">
+          <h5>Pick-Up At:</h5>
+          {{ order.pickUpAddr }} <br />
+          {{ order.pickUpCity }} <br />
+          {{ order.pickUpState }} <br />
+          {{ order.pickUpCountry }}, {{ order.pickUpZipCode }}
+        </div>
+        <div>
+          <h5>Drop-Off At:</h5>
+          {{ order.dropOffAddr }} <br />
+          {{ order.dropOffCity }} <br />
+          {{ order.dropOffState }} <br />
+          {{ order.dropOffCountry }}, {{ order.dropOffZipCode }}
+        </div>
+        <div class="right-side">
+          <a [routerLink]="['/track-package', order.id]">Track Package</a>
+        </div>
+      </div>
+    </div>
+    <div class="noOrders" *ngIf="myOrders.length === 0 ? true : false">
+      <i class="bx bx-package"></i>
+      <p>Look's like there are no orders yet...</p>
+    </div>
+  </div>
+</div>

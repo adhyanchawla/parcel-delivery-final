@@ -1,0 +1,138 @@
+<br />
+<div *ngIf="isLoading">
+  <app-loader></app-loader>
+</div>
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="col hh-grayBox">
+      <div class="row justify-content-between">
+        <div
+          class="order-tracking"
+          [ngClass]="{ completed: orderData.orderStage >= 0 }"
+        >
+          <span class="is-complete"></span>
+          <p>Ordered<br /></p>
+        </div>
+        <div
+          class="order-tracking"
+          [ngClass]="{ completed: orderData.orderStage >= 1 }"
+        >
+          <span class="is-complete"></span>
+          <p>Shipped</p>
+        </div>
+        <div
+          class="order-tracking"
+          [ngClass]="{ completed: orderData.orderStage >= 2 }"
+        >
+          <span class="is-complete"></span>
+          <p>Delivered<br /></p>
+        </div>
+      </div>
+    </div>
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: detailStep === 1 }"
+          (click)="packageDetails()"
+          >Package Details</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: detailStep === 2 }"
+          (click)="pickUpDetails()"
+          >Pick Up Details</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: detailStep === 3 }"
+          (click)="dropOffDetails()"
+          >Drop Off Details</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          [ngClass]="{ active: detailStep === 4 }"
+          (click)="pricingDetails()"
+          >Pricing Details</a
+        >
+      </li>
+    </ul>
+    <br />
+    <div>
+      <table class="table table-bordered" *ngIf="detailStep === 1">
+        <tbody>
+          <tr>
+            <td>Weight</td>
+            <td>{{ orderData.weight }}</td>
+          </tr>
+          <tr>
+            <td>Length</td>
+            <td>{{ orderData.length }}</td>
+          </tr>
+          <tr>
+            <td>Width</td>
+            <td>{{ orderData.width }}</td>
+          </tr>
+          <tr>
+            <td>Height</td>
+            <td>{{ orderData.height }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" *ngIf="detailStep === 2">
+        <tbody>
+          <tr>
+            <td>Address</td>
+            <td>{{ orderData.pickUpAddr }}</td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>{{ orderData.pickUpCity }}</td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td>{{ orderData.pickUpState }}</td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>{{ orderData.pickUpCountry }}</td>
+          </tr>
+          <tr>
+            <td>ZipCode</td>
+            <td>{{ orderData.pickUpZipCode }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-bordered" *ngIf="detailStep === 3">
+        <tbody>
+          <tr>
+            <td>Address</td>
+            <td>{{ orderData.dropOffAddr }}</td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td>{{ orderData.dropOffCity }}</td>
+          </tr>
+          <tr>
+            <td>State</td>
+            <td>{{ orderData.dropOffState }}</td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td>{{ orderData.dropOffCountry }}</td>
+          </tr>
+          <tr>
+            <td>ZipCode</td>
+            <td>{{ orderData.dropOffZipCode }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
