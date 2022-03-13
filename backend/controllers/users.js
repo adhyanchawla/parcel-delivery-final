@@ -18,7 +18,7 @@ exports.getUsers = (req, res, next) => {
 exports.registerUser = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
   users
     .findOne({
@@ -94,7 +94,7 @@ exports.verifyUser = (req, res, next) => {
 exports.loginUser = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ data: errors.array() });
   }
   users
     .findOne({
@@ -129,10 +129,14 @@ exports.loginUser = (req, res, next) => {
           );
           res.status(200).json({ token: token });
         } else {
-          res.status(401).json({ data: "Incorrect Password." });
+          res
+            .status(401)
+            .json({ data: "You have entered incorrect password." });
         }
       } else {
-        res.status(401).json({ data: "Incorrect Email Address." });
+        res
+          .status(401)
+          .json({ data: "You have entered incorrect email address." });
       }
     })
     .catch((err) => {

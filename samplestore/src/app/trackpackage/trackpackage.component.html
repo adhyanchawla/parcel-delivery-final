@@ -59,7 +59,7 @@
           class="nav-link"
           [ngClass]="{ active: detailStep === 4 }"
           (click)="pricingDetails()"
-          >Pricing Details</a
+          >Parcel Image</a
         >
       </li>
     </ul>
@@ -82,6 +82,10 @@
           <tr>
             <td>Height</td>
             <td>{{ orderData.height }}</td>
+          </tr>
+          <tr>
+            <td>Amount</td>
+            <td>Rs. {{ orderData.amount }}</td>
           </tr>
         </tbody>
       </table>
@@ -133,6 +137,11 @@
           </tr>
         </tbody>
       </table>
+      <img
+        *ngIf="detailStep === 4"
+        [src]="orderData.imageUrl"
+        alt="Parcel Picture"
+      />
     </div>
   </div>
 </div>

@@ -13,10 +13,10 @@ export class AuthenticationService {
   private tokenExpirationTimer: any;
 
   authenticateUser(userCredentials: { email: string; password: string }) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(
       'http://localhost:3000/users/login',
-      userCredentials,
+      JSON.stringify(userCredentials),
       { headers, observe: 'response' }
     );
   }
@@ -34,10 +34,10 @@ export class AuthenticationService {
     newUserEmail: string;
     newUserPassword: string;
   }) {
-    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post<any>(
       'http://localhost:3000/users/register',
-      newUserCredentials,
+      JSON.stringify(newUserCredentials),
       { headers, observe: 'response' }
     );
   }
@@ -114,7 +114,7 @@ export class AuthenticationService {
       token = '';
       console.log('Empty Token');
     }
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
     return this.http.post<any>('http://localhost:3000/users/verify-user', OTP, {
       headers: headers,
       observe: 'response',
@@ -127,10 +127,12 @@ export class AuthenticationService {
       token = '';
       console.log('Empty Token');
     }
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
+      .set('Content-Type', 'application/json');
     return this.http.post<any>(
       'http://localhost:3000/users/update-user-profile',
-      data,
+      JSON.stringify(data),
       {
         headers: headers,
         observe: 'response',

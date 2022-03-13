@@ -18,7 +18,9 @@ export class OrderService {
       token = '';
       console.log('Empty Token');
     }
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
+      .set('Content-Type', 'application/json');
     return this.http.post<any>(
       'http://localhost:3000/orders/create-order',
       orderObject,
@@ -35,7 +37,9 @@ export class OrderService {
       token = '';
       console.log('Empty Token');
     }
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    let headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + token)
+      .set('Content-Type', 'application/json');
     return this.http.post<any>(
       'http://localhost:3000/orders/estimate-price',
       { couponCode: couponCode },
@@ -71,6 +75,22 @@ export class OrderService {
       {
         headers: headers,
         observe: 'response',
+      }
+    );
+  }
+
+  uploadParcelImage(imageData: any) {
+    let token = this.getAuthToken();
+    if (!token) {
+      token = '';
+      console.log('Empty Token');
+    }
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.post<any>(
+      'http://localhost:3000/orders/upload-parcel-image',
+      imageData,
+      {
+        headers: headers,
       }
     );
   }

@@ -27,6 +27,7 @@ const Orders = sequelize.define("orders", {
   dropOffZipCode: DataTypes.STRING(6),
   amount: DataTypes.INTEGER,
   orderStage: DataTypes.INTEGER,
+  imageUrl: DataTypes.STRING,
   isPaid: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,

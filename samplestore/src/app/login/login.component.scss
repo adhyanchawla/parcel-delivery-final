@@ -1,31 +1,49 @@
 h2 {
-    text-align: center;
+  text-align: center;
 }
 
 h4 {
-    text-align: center;
+  text-align: center;
 }
 
 p {
-    text-align: center;
+  text-align: center;
 }
 
 a {
-    color: blue !important;
-    text-decoration: underline !important;
+  color: blue !important;
+  text-decoration: underline !important;
 }
 
 a:hover {
-    cursor: pointer;
-    color: darkblue !important;
+  cursor: pointer;
+  color: darkblue !important;
 }
 
 .error {
-    text-align: center;
-    background-color: rgb(255, 0, 0, 0.2);
-    padding: 10px;
+  text-align: center;
+  background-color: rgb(255, 0, 0, 0.2);
+  padding: 10px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 10px;
 }
 
-.error p{
-    margin: 0;
+.error p {
+  margin: 0;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

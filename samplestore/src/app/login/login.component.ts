@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   showRegistrationForm: boolean = false;
   loginError: boolean = false;
   isLoading: boolean = false;
-  error?: string;
+  error: string[] = [];
 
   constructor(
     private authService: AuthenticationService,
@@ -47,7 +47,8 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('');
         },
         error: (err) => {
-          this.error = err;
+          this.error.push(err.error.data);
+          this.error.push(err.error.data);
           this.isLoading = false;
         },
       });
@@ -71,10 +72,13 @@ export class LoginComponent implements OnInit {
           this.toggleRegistrationForm();
         },
         error: (err) => {
-          this.error = err;
           this.isLoading = false;
         },
       });
     form.reset();
+  }
+
+  closeError() {
+    this.error = [];
   }
 }

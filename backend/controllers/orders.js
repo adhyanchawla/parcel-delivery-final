@@ -21,6 +21,8 @@ exports.createOrder = (req, res, next) => {
   const dropOffState = req.body.dropOffState;
   const dropOffCountry = req.body.dropOffCountry;
   const dropOffZipCode = req.body.dropOffZipCode;
+  const imageUrl = req.body.imageUrl;
+  const amount = req.body.amount;
 
   if (
     !userId ||
@@ -82,6 +84,8 @@ exports.createOrder = (req, res, next) => {
     dropOffCountry: dropOffCountry,
     dropOffZipCode: dropOffZipCode,
     orderStage: 0,
+    imageUrl: imageUrl,
+    amount: amount,
   })
     .then((result) => {
       res.status(201).json({
@@ -143,4 +147,13 @@ exports.orderDetails = (req, res, next) => {
     .catch((err) => {
       res.status(500).json({ error: "Internal server error." });
     });
+};
+
+exports.uploadParcelImage = (req, res, next) => {
+  if (!req.file) {
+    const error = new Error("No Image Provided");
+    throw error;
+  }
+  const imageUrl = req.file.path;
+  res.status(201).json({ data: imageUrl });
 };

@@ -1,40 +1,40 @@
 node_modules/
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+samplestore/dist
+samplestore/tmp
+samplestore/out-tsc
+samplestore/bazel-out
 
 # Node
-npm-debug.log
-yarn-error.log
+samplestore/npm-debug.log
+samplestore/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+samplestore/.idea/
+samplestore/.project
+samplestore/.classpath
+samplestore/.c9/
+samplestore/*.launch
+samplestore/.settings/
+samplestore/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+samplestore/.vscode/*
+samplestore/!.vscode/settings.json
+samplestore/!.vscode/tasks.json
+samplestore/!.vscode/launch.json
+samplestore/!.vscode/extensions.json
+samplestore/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+samplestore/.angular/cache
+samplestore/.sass-cache/
+samplestore/connect.lock
+samplestore/coverage
+samplestore/libpeerconnection.log
+samplestore/testem.log
+samplestore/samplestore/typings
 
 # System files
-.DS_Store
-Thumbs.db
+samplestore/.DS_Store
+samplestore/Thumbs.db

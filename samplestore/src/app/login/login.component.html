@@ -2,10 +2,15 @@
 <div *ngIf="isLoading">
   <app-loader></app-loader>
 </div>
-<div class="error" *ngIf="error">
-  <p>
-    {{ error }}
-  </p>
+<div *ngIf="error.length !== 0">
+  <div class="error" *ngFor="let err of error">
+    <span class="closebtn" (click)="closeError()"
+      ><i class="bx bx-x" style="color: #000"></i
+    ></span>
+    {{ err }}
+  </div>
+  <br />
+  <br />
 </div>
 <div *ngIf="!isLoading">
   <!-- Login Form -->

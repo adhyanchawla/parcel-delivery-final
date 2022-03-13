@@ -54,6 +54,26 @@
             required
           />
         </div>
+        <div class="mb-3">
+          <label for="parcelImage" class="form-label">Parcel Picture</label>
+          <br />
+          <input
+            type="file"
+            class="form-control"
+            (change)="handleFileInput($event)"
+            id="parcelImage"
+            #parcelImage
+          />
+          <div *ngIf="imageUrl">
+            <br />
+            <hr />
+            <br />
+            <img [src]="imageUrl" alt="Parcel Picture" />
+            <button class="btn btn-danger" (click)="onClear(parcelImage)">
+              Clear
+            </button>
+          </div>
+        </div>
       </div>
       <div class="sub-div">
         <h4>Parcel Dimensions</h4>
