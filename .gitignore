@@ -18,6 +18,7 @@ samplestore/*.launch
 samplestore/.settings/
 samplestore/*.sublime-workspace
 
+
 # Visual Studio Code
 samplestore/.vscode/*
 samplestore/!.vscode/settings.json
